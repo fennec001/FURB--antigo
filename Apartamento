@@ -1,0 +1,93 @@
+//Guilherme Moll
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Apartamento {
+	private String responsavel;
+	private  int numero;
+	private Date dataEntrada;
+	private ArrayList<FonteConsumidora> fontes = new ArrayList<>();
+	
+	public Apartamento(String responsavel, int numero, Date dataEntrada) {
+		this.setResponsavel(responsavel);
+		this.setNumero(numero);
+		this.setDataEntrada(dataEntrada);
+	}
+	
+	public String getResponsavel() {
+		return responsavel;
+	}
+	
+	public void setResponsavel(String responsavel) {
+		if(!responsavel.equals(null)) {
+			this.responsavel = responsavel;
+		}
+	}
+	
+	public int getNumero() {
+		return numero;
+	}
+	
+	public void setNumero(int numero) {
+		if(numero > 0) {
+			this.numero = numero;
+		}
+	}
+	
+	public Date getDataEntrada() {
+		return dataEntrada;
+	}
+	
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+	
+	public void addFonte(FonteConsumidora fonte) {
+		fontes.add(fonte);
+	}
+	
+	public ArrayList<FonteConsumidora> getFontes() {
+		ArrayList<FonteConsumidora> clone = new ArrayList<>(fontes);
+		return clone;
+	}
+	
+	public float getConsumoTotal() {
+		float total = 0;
+		
+		for(FonteConsumidora f : fontes) {
+			total += f.getConsumo();
+		}
+		
+		return total / 1000;
+	}
+	
+	public float getConsumoMedio() {
+		float media = (getConsumoTotal() * 1000) / fontes.size();
+		
+		return media;
+	}
+	
+	public FonteConsumidora getMaiorFonte() {
+		FonteConsumidora maior = fontes.get(0);
+		
+		for(FonteConsumidora f : fontes) {
+			if(f.getConsumo() > maior.getConsumo()) {
+				maior = f;
+			}
+		}
+		
+		return maior;
+	}
+	
+	public ArrayList<FonteConsumidora> getFontesConsumidoras(String desc) {
+		ArrayList<FonteConsumidora> retorno = new ArrayList<>();
+		
+		for(FonteConsumidora f : fontes) {
+			if(f.getDescricao().equals(desc)) {
+				retorno.add(f);
+			}
+		}
+		
+		return retorno;
+	}
+}
