@@ -1,0 +1,75 @@
+//Guilherme Moll Silva
+public class Prova {
+
+	//a)
+	public static boolean isComposto(int valor01){
+		// caso o numero seja composto, retornamos true.
+		int contador = 0;
+		boolean isComposto = false;
+		    for(int i = 1; i < valor01;i++){
+		        if(valor01%i==0){
+		            contador++;
+		        } 
+		    }
+		if(contador == 1){
+		    isComposto = false;
+		    return isComposto;
+		}   
+		else{
+		    isComposto = true;
+		    return isComposto;
+		}
+		}
+
+	
+	// b)
+	public static boolean isPrimo(int valor01){
+		boolean isPrimo = false;
+		    if(isComposto(valor01)== false){
+		isPrimo = true;
+		    }
+		return isPrimo;
+		}
+
+	// c)
+	public static int nesimo(int valor01){
+		  // retornamos o N-ésimo primo
+		    int contadorPrimos = 0;
+		    int contador = 0;
+		    while(contadorPrimos!=valor01){
+		        if(isPrimo(contador)==true){
+		            contadorPrimos++;
+		        }
+		        contador++;
+		    }
+		contador--;
+		return contador;
+		}
+
+	
+
+//d
+	public static int proximoPrimo(int valor01){
+		// verificamos todos os numeros após o valor01 até chegar em um primo.
+		do{valor01++;}
+		while(isPrimo(valor01)==false);
+		
+	return valor01;
+	}
+
+//e)
+public static boolean isGemeo(int valor01,int valor02){
+ boolean isGemeo = false;
+// para verificar se são gêmeos, primeiro verificamos se são primos. Caso não sejam, já retornamos como falso
+ if(isPrimo(valor01)==false||isPrimo(valor02)==false){
+ return isGemeo;
+}
+//escolhi fazer com if e não com cast para positivo para ser humilde
+if((valor01 - valor02) ==2||(valor01- valor02)==-2){
+ isGemeo=true;
+ 
+}
+return isGemeo;
+}
+
+}
